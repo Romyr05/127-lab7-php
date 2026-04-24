@@ -1,0 +1,57 @@
+
+<html>
+<head>
+    <title>Student Form</title>
+</head>
+<body>
+
+    <form action="submit.php" method="POST">
+
+        <!-- name -->
+        <label>Name:</label><br>
+        <input type="text" name="name" maxlength="40" required><br><br>
+
+        <!-- age (0–99) -->
+        <label>Age:</label><br>
+        <input type="number" name="age" min="0" max="99" required><br><br>
+
+        <!-- email -->
+        <label>Email:</label><br>
+        <input type="email" name="email" maxlength="40" required><br><br>
+
+        <!-- course -->
+        <label>Course:</label><br>
+        <input type="text" name="course" maxlength="40" required><br><br>
+
+        <!-- year level -->
+        <label>Year Level:</label><br>
+        <select name="year_level" required>
+            <option value="">Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br><br>
+
+        
+        <label>Graduated:</label>
+        <input type="checkbox" name="graduated" value="1"><br><br>
+
+    
+        <label>Upload Image:</label><br>
+        <input type="text" name="image"><br><br>
+        <input type="submit" value="Submit">
+        
+
+    </form>
+
+    <div id="student-list">
+        <h2>Student List</h2>
+        <?php 
+            include 'display.php';
+        ?>
+    </div>
+
+
+</body>
+</html>
