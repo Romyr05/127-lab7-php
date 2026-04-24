@@ -16,3 +16,9 @@ CREATE TABLE student_details (
     ImagePath VARCHAR(255),
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
 );
+
+INSERT INTO students (Name, Age, Email, Course) 
+VALUES ('John Doe', 20, 'john.doe@up.edu.ph', 'Computer Science');
+
+INSERT INTO student_details (student_id, YearLevel, GraduationStatus, ImagePath) 
+VALUES (1, 3, 0, '');
