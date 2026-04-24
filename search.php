@@ -6,9 +6,22 @@ if (isset($_POST['searchInput'])) {
     $value = $_POST['searchInput'];
 
     // SQL query (search by ID OR Name)
-    $sql = "SELECT * FROM students 
-            WHERE id = '$value' 
-            OR name = '$value'";
+    $sql = "
+        SELECT 
+            s.id,
+            s.Name,
+            s.Age,
+            s.Email,
+            s.Course,
+            d.YearLevel,
+            d.GraduationStatus,
+            d.ImagePath
+        FROM students s
+        LEFT JOIN student_details d 
+        ON s.id = d.student_id
+        WHERE s.id = '$value' 
+        OR s.Name = '$value'
+        ";
 
     $result = $conn->query($sql);
 
