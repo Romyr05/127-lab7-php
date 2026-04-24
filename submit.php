@@ -6,28 +6,34 @@ $age = $_POST['age'];
 $email = $_POST['email'];
 $course = $_POST['course'];
 $yearLvl = $_POST['year_level'];
-$graduated = $_POST['graduated'];
+
+// checkbox handling (IMPORTANT)
+$graduated = isset($_POST['graduated']) ? 1 : 0;
+
 $imgFilePathStr = $_POST['image'];
 
 
+// 1. Insert into students table
+$kuery1 = "INSERT INTO students (Name, Age, Email, Course)
+           VALUES ('$name', '$age', '$email', '$course')";
 
-$kuery = "INSERT INTO students( 
-            Name,
-            Age ,
-            Email,
-            Course,
-            YearLevel,
-            GraduationStatus,
-            ImagePath) VALUES ('$name', '$age', '$email', '$course', '$yearLvl', '$graduated', '$imgFilePathStr');";
+if ($conn->query($kuery1) === TRUE) {
 
-if ($conn->query($kuery) === TRUE){
-    header("Location: student-form.php");
-    exit();
+    // get last inserted student id
+    $student_id = $conn->insert_id;
+
+    // 2. Insert into student_details table
+    $kuery2 = "INSERT INTO student_details (student_id, YearLevel, GraduationStatus, ImagePath)
+               VALUES ('$student_id', '$yearLvl', '$graduated', '$imgFilePathStr')";
+
+    if ($conn->query($kuery2) === TRUE) {
+        header("Location: student-form.php");
+        exit();
+    } else {
+        echo "Error inserting details: " . $conn->error;
+    }
+
 } else {
-    echo "Error" . $conn->error;
+    echo "Error inserting student: " . $conn->error;
 }
-
-
-
-
 ?>

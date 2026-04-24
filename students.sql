@@ -1,3 +1,5 @@
+DROP TABLE students;
+
 -- Student Details
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,25 +1,54 @@
 <?php
-    include 'DBConnector.php';
+include 'DBConnector.php';
 
-    $sql = "SELECT * FROM students";
-    $result = $conn->query($sql);
+$sql = "
+SELECT 
+    s.id,
+    s.Name,
+    s.Age,
+    s.Email,
+    s.Course,
+    d.YearLevel,
+    d.GraduationStatus,
+    d.ImagePath
+FROM students s
+LEFT JOIN student_details d 
+ON s.id = d.student_id
+";
 
-    if ($result->num_rows > 0) {
+$result = $conn->query($sql);
 
-        while($row = $result->fetch_assoc()) {
-            echo "<p>";
-            echo "Name: " . $row['Name'] . "<br>";
-            echo "Age: " . $row['Age'] . "<br>";
-            echo "Email: " . $row['Email'] . "<br>";
-            echo "Course: " . $row['Course'] . "<br>";
-            echo "Year Level: " . $row['YearLevel'] . "<br>";
-            echo "Graduated: " . ($row['GraduationStatus'] ? 'Yes' : 'No') . "<br>";
-            echo "Image: " . $row['ImagePath'] . "<br>";
-            echo "<hr>";
-            echo "</p>";
-        }
+if ($result->num_rows > 0) {
 
-    } else {
-        echo "No students found.";
+    echo "<table border='1'>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Year Level</th>
+                <th>Graduated</th>
+                <th>Image</th>
+            </tr>";
+
+    while ($row = $result->fetch_assoc()) {
+
+        echo "<tr>
+                <td>{$row['id']}</td>
+                <td>{$row['Name']}</td>
+                <td>{$row['Age']}</td>
+                <td>{$row['Email']}</td>
+                <td>{$row['Course']}</td>
+                <td>{$row['YearLevel']}</td>
+                <td>" . ($row['GraduationStatus'] ? "Yes" : "No") . "</td>
+                <td>{$row['ImagePath']}</td>
+              </tr>";
     }
-    ?>
+
+    echo "</table>";
+
+} else {
+    echo "No students found.";
+}
+?>
