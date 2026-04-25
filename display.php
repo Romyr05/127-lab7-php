@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>";
+            ";
 
     while ($row = $result->fetch_assoc()) {
         $grad = $row['GraduationStatus']
@@ -56,7 +56,7 @@ if ($result->num_rows > 0) {
               </tr>";
     }
 
-    echo "</tbody></table></div>";
+    echo "</table></div>";
 } else {
     echo "<div class='alert alert-error'>No students found. Register one above.</div>";
 }

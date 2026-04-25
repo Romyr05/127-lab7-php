@@ -25,7 +25,7 @@ if (!$row) die("Student not found.");
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update Student Info — UP Registry</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-edit-form.css">
 </head>
 <body>
 <div class="page-wrapper">
@@ -101,7 +101,7 @@ if (!$row) die("Student not found.");
                 Current: <?= htmlspecialchars($row['ImagePath']) ?>
               </p>
             <?php endif; ?>
-            <input type="file" name="image" accept="image/*">
+            <input type="text" name="image"">
           </div>
 
         </div>
