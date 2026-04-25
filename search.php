@@ -30,9 +30,8 @@ if (isset($_POST['searchInput'])) {
 
 
     if ($result->num_rows > 0) {
-
     echo "
-    <table border='1' cellpadding='8' cellspacing='0'>
+    <table border='1' cellpadding='8' cellspacing='0' margin=20>
         <tr>
             <th>ID</th>
             <th>Name</th>
