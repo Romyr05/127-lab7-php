@@ -7,13 +7,13 @@ $email = $_POST['email'];
 $course = $_POST['course'];
 $yearLvl = $_POST['year_level'];
 
-// checkbox handling (IMPORTANT)
+// checkbox handling grad stats
 $graduated = isset($_POST['graduated']) ? 1 : 0;
 
 $imgFilePathStr = $_POST['image'];
 
 
-// 1. Insert into students table
+// insert into students table
 $kuery1 = "INSERT INTO students (Name, Age, Email, Course)
            VALUES ('$name', '$age', '$email', '$course')";
 
@@ -22,7 +22,7 @@ if ($conn->query($kuery1) === TRUE) {
     // get last inserted student id
     $student_id = $conn->insert_id;
 
-    // 2. Insert into student_details table
+    // insert into student_details table
     $kuery2 = "INSERT INTO student_details (student_id, YearLevel, GraduationStatus, ImagePath)
                VALUES ('$student_id', '$yearLvl', '$graduated', '$imgFilePathStr')";
 
