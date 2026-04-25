@@ -30,59 +30,51 @@ if (isset($_POST['searchInput'])) {
 
 
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $grad = $row['GraduationStatus']
-                ? "<span class='badge-yes'>Yes</span>"
-                : "<span class='badge-no'>No</span>";
 
-            echo "
-            <div class='result-card'>
-              <div class='result-card-header'>
-                <h3>" . htmlspecialchars($row['Name']) . "</h3>
-                <div class='result-card-actions'>
-                  <a href='edit-form.php?id={$row['id']}' class='btn btn-accent btn-sm'>✏️ Edit</a>
-                  <form action='delete.php' method='POST'
-                        onsubmit=\"return confirm('Delete " . htmlspecialchars($row['Name'], ENT_QUOTES) . "? This cannot be undone.')\">
+    echo "
+    <table border='1' cellpadding='8' cellspacing='0'>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Year Level</th>
+            <th>Graduated</th>
+            <th>Image Path</th>
+            <th>Actions</th>
+        </tr>
+    ";
+
+    while ($row = $result->fetch_assoc()) {
+        $grad = $row['GraduationStatus'] ? "Yes" : "No";
+
+        echo "
+        <tr>
+            <td>{$row['id']}</td>
+            <td>{$row['Name']}</td>
+            <td>{$row['Age']}</td>
+            <td>{$row['Email']}</td>
+            <td>{$row['Course']}</td>
+            <td>{$row['YearLevel']}</td>
+            <td>{$grad}</td>
+            <td>{$row['ImagePath']}</td>
+            <td>
+                <a href='edit-form.php?id={$row['id']}'>Edit</a>
+                <form action='delete.php' method='POST' style='display:inline;'>
                     <input type='hidden' name='id' value='{$row['id']}'>
-                    <button type='submit' class='btn btn-danger btn-sm'>🗑️ Delete</button>
-                  </form>
-                </div>
-              </div>
-              <div class='result-grid'>
-                <div class='result-field'>
-                  <span class='rf-label'>ID</span>
-                  <span class='rf-value'>#{$row['id']}</span>
-                </div>
-                <div class='result-field'>
-                  <span class='rf-label'>Age</span>
-                  <span class='rf-value'>{$row['Age']}</span>
-                </div>
-                <div class='result-field'>
-                  <span class='rf-label'>Email</span>
-                  <span class='rf-value'>" . htmlspecialchars($row['Email']) . "</span>
-                </div>
-                <div class='result-field'>
-                  <span class='rf-label'>Course</span>
-                  <span class='rf-value'>" . htmlspecialchars($row['Course']) . "</span>
-                </div>
-                <div class='result-field'>
-                  <span class='rf-label'>Year Level</span>
-                  <span class='rf-value'>{$row['YearLevel']}</span>
-                </div>
-                <div class='result-field'>
-                  <span class='rf-label'>Graduated</span>
-                  <span class='rf-value'>{$grad}</span>
-                </div>
-                <div class='result-field'>
-                  <span class='rf-label'>Image Path</span>
-                  <span class='rf-value'>" . htmlspecialchars($row['ImagePath'] ?? 'None') . "</span>
-                </div>
-              </div>
-            </div>";
-        }
-    } else {
-        echo "<div class='alert alert-error'>No student found matching: <strong>" . htmlspecialchars($value) . "</strong></div>";
+                    <button type='submit'>Delete</button>
+                </form>
+            </td>
+        </tr>
+        ";
     }
+
+    echo "</table>";
+
+} else {
+    echo "No student found.";
+}
 
     $stmt->close();
 }

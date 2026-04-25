@@ -68,7 +68,7 @@
 
           <div class="form-group full-width">
             <label>Profile Photo <span class="field-hint">Saved to images</span></label>
-            <input type="file" name="image" accept="image/*">
+            <input type="text" name="image">
           </div>
 
         </div>
