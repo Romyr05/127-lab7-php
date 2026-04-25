@@ -1,31 +1,31 @@
 <?php
 include 'DBConnector.php';
 
-// Check ID
+
 if (isset($_POST['id'])) {
     $id = (int) $_POST['id'];
     
-    // Get the image path to delete the image file
-    $stmt = $conn->prepare("SELECT ImagePath FROM students WHERE id = ?");
+
+    $stmt = $conn->prepare("SELECT ImagePath FROM student_details WHERE student_id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
     $student = $result->fetch_assoc();
     $stmt->close();
     
-    // Delete the image file if it exists
+    
     if ($student && !empty($student['ImagePath']) && file_exists($student['ImagePath'])) {
-        unlink($student['ImagePath']); // Deletes the image file from server
+        unlink($student['ImagePath']);
     }
     
-    // Delete the student record from database
+    // Delete the student -- also deletes the student_details record
     $stmt = $conn->prepare("DELETE FROM students WHERE id = ?");
     $stmt->bind_param("i", $id);
     
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
-        header("Location: student-form.php");
+        header("Location: student-form.html");
         exit();
     } else {
         echo "Error deleting student: " . $stmt->error;
@@ -33,8 +33,7 @@ if (isset($_POST['id'])) {
     
     $conn->close();
 } else {
-    // No ID provided
-    header("Location: student-form.php");
+    header("Location: student-form.html");
     exit();
 }
 ?>

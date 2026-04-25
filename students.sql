@@ -1,4 +1,5 @@
-DROP TABLE students;
+DROP TABLE IF EXISTS student_details;
+DROP TABLE IF EXISTS students;
 
 -- Student Details
 CREATE TABLE students (
@@ -18,3 +19,4 @@ CREATE TABLE student_details (
     ImagePath VARCHAR(255),
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
 );
+
