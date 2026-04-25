@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "student-test"; //this is the database name, you can change this, make sure to also change your actual database name
+$dbname = "student-test"; //DB name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -11,4 +11,4 @@ if ($conn->connect_error) {
 }
 
 echo "Connected successfully <br/>";
-?>
+?>  
