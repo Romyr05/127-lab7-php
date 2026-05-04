@@ -86,7 +86,7 @@
   <section>
     <h2 class="section-title"><span class="section-icon"></span> Search Student</h2>
     <div class="card">
-      <form action="student-form.php" method="POST">
+      <form action="index.php" method="POST">
         <div class="search-row">
           <input type="text" name="searchInput" placeholder="Enter student ID or name…">
           <button type="submit" class="btn btn-accent">Search</button>
