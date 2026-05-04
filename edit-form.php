@@ -1,6 +1,11 @@
 <?php
 include 'DBConnector.php';
 
+if (!isset($_GET['id']) || trim($_GET['id']) === '') {
+    echo "edit-form.php needs a student ID in the URL, like <a href='edit-form.php?id=1'>edit-form.php?id=1</a>. You can choose a student from <a href='index.php'>index.php</a>.";
+    exit();
+}
+
 $id = (int) $_GET['id'];
 
 $stmt = $conn->prepare(

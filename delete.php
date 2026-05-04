@@ -1,4 +1,9 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo "delete.php is an action script. Please use the delete form on <a href='index.php'>index.php</a>.";
+    exit();
+}
+
 include 'DBConnector.php';
 
 
@@ -20,7 +25,7 @@ if (isset($_POST['id'])) {
     
     $conn->close();
 } else {
-    header("Location: index.php");
+    echo "delete.php needs a student ID from the delete form on <a href='index.php'>index.php</a>.";
     exit();
 }
 ?>

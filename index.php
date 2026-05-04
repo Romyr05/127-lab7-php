@@ -92,7 +92,7 @@
           <button type="submit" class="btn btn-accent">Search</button>
         </div>
       </form>
-      <div">
+      <div>
         <?php include 'search.php'; ?>
       </div>
     </div>

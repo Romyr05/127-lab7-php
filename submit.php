@@ -1,4 +1,9 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo "submit.php is an action script. Please use the registration form on <a href='index.php'>index.php</a>.";
+    exit();
+}
+
 include 'DBConnector.php';
 
 $name = $_POST['name'];

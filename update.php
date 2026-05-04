@@ -1,4 +1,9 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo "update.php is an action script. Please use an edit form from <a href='index.php'>index.php</a>.";
+    exit();
+}
+
 include 'DBConnector.php';
 
 $id        = (int) $_POST['id'];
@@ -47,7 +52,7 @@ if ($stmt->execute()) {
     if ($stmt2->execute()) {
         $stmt2->close();
         $conn->close();
-        header("Location:index.php");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error updating details: " . $stmt2->error;
