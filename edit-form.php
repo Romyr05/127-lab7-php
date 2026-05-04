@@ -35,7 +35,7 @@ if (!$row) die("Student not found.");
       <span class="logo-eyebrow">University of the Philippines</span>
       <span class="logo-title">Student <span>Registry</span></span>
     </div>
-    <a href="student-form.php" class="btn btn-ghost">← Back to Dashboard</a>
+    <a href="index.php" class="btn btn-ghost">← Back to Dashboard</a>
   </header>
 
   <section>
@@ -108,7 +108,7 @@ if (!$row) die("Student not found.");
 
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">Save Changes</button>
-          <a href="student-form.php" class="btn btn-ghost">Cancel</a>
+          <a href="index.php" class="btn btn-ghost">Cancel</a>
         </div>
 
       </form>

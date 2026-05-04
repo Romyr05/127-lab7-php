@@ -12,7 +12,7 @@ if (isset($_POST['id'])) {
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
-        header("Location: student-form.php");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error deleting student: " . $stmt->error;
@@ -20,7 +20,7 @@ if (isset($_POST['id'])) {
     
     $conn->close();
 } else {
-    header("Location: student-form.php");
+    header("Location: index.php");
     exit();
 }
 ?>

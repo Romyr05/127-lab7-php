@@ -47,7 +47,7 @@ if ($stmt->execute()) {
     if ($stmt2->execute()) {
         $stmt2->close();
         $conn->close();
-        header("Location: student-form.php");
+        header("Location:index.php");
         exit();
     } else {
         echo "Error updating details: " . $stmt2->error;

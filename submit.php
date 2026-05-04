@@ -27,7 +27,7 @@ if ($conn->query($kuery1) === TRUE) {
                VALUES ('$student_id', '$yearLvl', '$graduated', '$imgFilePathStr')";
 
     if ($conn->query($kuery2) === TRUE) {
-        header("Location: student-form.php");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error inserting details: " . $conn->error;
